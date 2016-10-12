@@ -32,6 +32,8 @@
         android:layout_height="wrap_content"
         tools:text="Sample text. A big screen remake of John Sturges classic western The Magnificent Seven, itself a remake of Akira Kurosawas Seven Samurai. Seven gun men in the old west gradually come together to help a poor village against savage thieves."
         android:id="@+id/tvOverview"
+        android:maxLines="7"
+        android:ellipsize="end"
         android:layout_below="@+id/tvTitle"
         android:layout_toRightOf="@+id/ivMovieImage"
         android:layout_toEndOf="@+id/ivMovieImage"

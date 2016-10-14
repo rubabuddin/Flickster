@@ -1,9 +1,12 @@
 package com.rubabuddin.flickster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,19 +21,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MovieActivity extends AppCompatActivity {
 
-    private SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.lvMovies) ListView lvItems;
 
     ArrayList<Movie> movies;
     MovieArrayAdapter movieAdapter;
-    ListView lvItems;
     String url = "";
 
     final String toastNowPlaying = "Now Playing in Theatres";
     final String urlNowPlaying = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+
     final String toastPopular = "Popular at the Box Office";
     final String urlPopular = "https://api.themoviedb.org/3/movie/popular?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
@@ -38,8 +44,9 @@ public class MovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+        setTitle("Flickster - Now Playing");
 
-        lvItems = (ListView) findViewById(R.id.lvMovies);
+        ButterKnife.bind(this);
         movies = new ArrayList<>();
         movieAdapter = new MovieArrayAdapter(this, movies);
         lvItems.setAdapter(movieAdapter);
@@ -47,11 +54,50 @@ public class MovieActivity extends AppCompatActivity {
         url = urlNowPlaying;
         getMovieList();
         setupSwipeToRefresh();
+        setupListViewListener();
     }
+
+    public void setupListViewListener(){
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Movie selectedMovie = movies.get(position);
+
+                if(selectedMovie.isPopular()){
+                    //launch video player
+                    //Intent intent = new Intent(MovieActivity.this, PlayVideoActivity.class);
+                    //intent.putExtra("id", selectedMovie.getId());
+                    //startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MovieActivity.this, DetailsActivity.class);
+                    intent.putExtra("id", selectedMovie.getId());
+                    intent.putExtra("posterPath", selectedMovie.getPosterPath());
+                    intent.putExtra("title",selectedMovie.getOriginalTitle());
+                    intent.putExtra("voteAverage", selectedMovie.getVoteAverage());
+                    intent.putExtra("popularity", selectedMovie.getPopularity());
+                    intent.putExtra("videoExists", selectedMovie.getVideoExists());
+                    intent.putExtra("overview", selectedMovie.getOverview());
+                    intent.putExtra("releaseDate", selectedMovie.getRelease_date());
+                    intent.putExtra("voteCount", selectedMovie.getVoteCount());
+
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+    }
+
+
 
     private void setupSwipeToRefresh() {
         // Lookup the swipe container view
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -62,9 +108,11 @@ public class MovieActivity extends AppCompatActivity {
                 movieAdapter.clear();
                 if(url == urlNowPlaying) {
                     url = urlPopular;
+                    setTitle("Flickster - Popular Movies");
                     Toast.makeText(getApplicationContext(), toastPopular, Toast.LENGTH_SHORT).show();
                 } else {
                     url = urlNowPlaying;
+                    setTitle("Flickster - Now Playing");
                     Toast.makeText(getApplicationContext(), toastNowPlaying, Toast.LENGTH_SHORT).show();
                 }
                 getMovieList();

@@ -4,28 +4,26 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:id="@+id/ivMovieImage"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         tools:src="@mipmap/ic_launcher"
-        android:paddingTop="6dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingBottom="3dp"/>
+        android:paddingTop="4dp"
+        android:paddingBottom="6dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="20dp"
+        android:textColor="@color/titleColor"
         tools:text="Sample Movie Title"
         android:id="@+id/tvTitle"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivMovieImage"
-        android:layout_toEndOf="@+id/ivMovieImage"
-        android:paddingLeft="10dp"/>
+        android:layout_toEndOf="@+id/ivMovieImage" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,8 +32,9 @@
         android:id="@+id/tvOverview"
         android:maxLines="7"
         android:ellipsize="end"
+        android:textColor="@color/textColor"
         android:layout_below="@+id/tvTitle"
         android:layout_toRightOf="@+id/ivMovieImage"
         android:layout_toEndOf="@+id/ivMovieImage"
-        android:paddingLeft="10dp"/>
+        android:paddingBottom="6dp"/>
 </RelativeLayout>

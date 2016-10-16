@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Flickster</string>
+    <string name="html_title_now_playing">  <![CDATA[ <font color=#FFFFFF>Flickster<font color=#757575> Now Playing</b>]]></string>
+    <string name="html_title_popular">  <![CDATA[ <font color=#FFFFFF>Flickster<font color=#757575> Popular in Theatres</b>]]></string>
 </resources>

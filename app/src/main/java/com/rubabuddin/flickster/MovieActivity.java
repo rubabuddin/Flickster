@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,14 +38,20 @@ public class MovieActivity extends AppCompatActivity {
     final String toastNowPlaying = "Now Playing in Theatres";
     final String urlNowPlaying = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
-    final String toastPopular = "Popular at the Box Office";
+    final String toastPopular = "Popular in Theatres";
     final String urlPopular = "https://api.themoviedb.org/3/movie/popular?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        setTitle("Flickster - Now Playing");
+        setTitle(Html.fromHtml(getString(R.string.html_title_now_playing)));
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.actionbar_icon);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+
 
         ButterKnife.bind(this);
         movies = new ArrayList<>();
@@ -64,10 +71,10 @@ public class MovieActivity extends AppCompatActivity {
                 Movie selectedMovie = movies.get(position);
 
                 if(selectedMovie.isPopular()){
-                    //launch video player
-                    //Intent intent = new Intent(MovieActivity.this, PlayVideoActivity.class);
-                    //intent.putExtra("id", selectedMovie.getId());
-                    //startActivity(intent);
+
+                    Intent intent = new Intent(MovieActivity.this, PlayVideoActivity.class);
+                    intent.putExtra("id", selectedMovie.getId());
+                    startActivity(intent);
                 } else {
                     Intent intent = new Intent(MovieActivity.this, DetailsActivity.class);
                     intent.putExtra("id", selectedMovie.getId());
@@ -79,6 +86,7 @@ public class MovieActivity extends AppCompatActivity {
                     intent.putExtra("overview", selectedMovie.getOverview());
                     intent.putExtra("releaseDate", selectedMovie.getRelease_date());
                     intent.putExtra("voteCount", selectedMovie.getVoteCount());
+                    intent.putExtra("adult", selectedMovie.isAdult());
 
                     startActivity(intent);
                 }
@@ -108,11 +116,11 @@ public class MovieActivity extends AppCompatActivity {
                 movieAdapter.clear();
                 if(url == urlNowPlaying) {
                     url = urlPopular;
-                    setTitle("Flickster - Popular Movies");
+                    setTitle(Html.fromHtml(getString(R.string.html_title_popular)));
                     Toast.makeText(getApplicationContext(), toastPopular, Toast.LENGTH_SHORT).show();
                 } else {
                     url = urlNowPlaying;
-                    setTitle("Flickster - Now Playing");
+                    setTitle(Html.fromHtml(getString(R.string.html_title_now_playing)));
                     Toast.makeText(getApplicationContext(), toastNowPlaying, Toast.LENGTH_SHORT).show();
                 }
                 getMovieList();

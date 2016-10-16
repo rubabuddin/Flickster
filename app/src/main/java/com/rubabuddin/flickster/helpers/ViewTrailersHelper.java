@@ -27,7 +27,7 @@ public class ViewTrailersHelper {
     JSONArray videoJsonResult = null;
     JSONArray qtVideoJsonResult = null;
 
-    public void showVideo(String id, final YouTubePlayerView playerDetailYoutube)
+    public void showVideo(String id, final String activity, final YouTubePlayerView playerDetailYoutube)
     {
         String url = "https://api.themoviedb.org/3/movie/"+id+"/trailers?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
@@ -53,7 +53,13 @@ public class ViewTrailersHelper {
                                                                         YouTubePlayer youTubePlayer, boolean b) {
                                         // do any work here to cue video, play video, etc.
                                         //youTubePlayer.cueVideo("5xVh-7ywKpE");
-                                        youTubePlayer.cueVideo(source);
+                                        if(activity == "default"){
+                                            youTubePlayer.cueVideo(source);
+                                        } else {
+                                            youTubePlayer.setFullscreen(true);
+                                            youTubePlayer.loadVideo(source);
+                                        }
+
                                     }
                                     @Override
                                     public void onInitializationFailure(YouTubePlayer.Provider provider,

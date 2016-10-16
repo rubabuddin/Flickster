@@ -35,6 +35,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
     private static class ViewHolderPopular {
         ImageView ivImagePopular;
+        TextView tvTitle;
+        TextView tvOverview;
     }
 
     public MovieArrayAdapter(Context context, List<Movie> movies) {
@@ -88,6 +90,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.item_movie_popular, parent, false); //dont attach to adapter, done elsewhere
                 viewHolderPopular.ivImagePopular = (ImageView) convertView.findViewById(R.id.ivMovieImagePopular);
+                viewHolderPopular.tvTitle = (TextView) convertView.findViewById(R.id.tvTitlePopular);
+                viewHolderPopular.tvOverview = (TextView) convertView.findViewById(R.id.tvOverviewPopular);
                 // Cache the viewHolder object inside the fresh view
                 convertView.setTag(viewHolderPopular);
             }
@@ -132,19 +136,19 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
                         .error(R.drawable.progress_animation)
                         .transform(new RoundedCornersTransformation(10,10))
                         .into(viewHolder.ivImage);
+                viewHolder.ivImage.setScaleType(ImageView.ScaleType.FIT_XY);
             } else if(type == 1) {
+                viewHolderPopular.tvTitle.setText(movie.getOriginalTitle());
+                viewHolderPopular.tvOverview.setText(movie.getOverview());
                     Picasso.with(getContext())
                         .load(movie.getBackdropPath())
                         .placeholder(R.drawable.progress_animation)
                         .error(R.drawable.progress_animation)
                         .transform(new RoundedCornersTransformation(10,10))
                         .into(viewHolderPopular.ivImagePopular);
+                viewHolderPopular.ivImagePopular.setScaleType(ImageView.ScaleType.FIT_XY);
             }
-        //clear out image from convertView
 
-
-
-        //return the view
 
     }
     return convertView;

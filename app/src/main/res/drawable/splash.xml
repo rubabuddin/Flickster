@@ -4,6 +4,9 @@
     <item
         android:drawable="@color/colorPrimary"/>
     <item>
+        android:text="@strings/AppName"
+    </item>
+    <item>
         <bitmap
             android:gravity="center"
             android:src="@drawable/splash_logo"/>

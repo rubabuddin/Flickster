@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="244dp"
+        android:layout_height="170dp"
+        android:id="@+id/ivMovieImagePopular"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/video_player"
+        android:adjustViewBounds="true" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/play_inset"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/tvTitlePopular"
+        android:layout_toLeftOf="@+id/tvOverviewPopular"
+        android:layout_toStartOf="@+id/tvOverviewPopular"
+        android:layout_marginRight="91dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginTop="36dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Sample text. A big screen remake of John Sturges classic western The Magnificent Seven, itself a remake of Akira Kurosawas Seven Samurai. Seven gun men in the old west gradually come together to help a poor village against savage thieves."
+        android:id="@+id/tvOverviewPopular"
+        android:maxLines="7"
+        android:ellipsize="end"
+        android:textColor="@color/textColor"
+        android:paddingBottom="6dp"
+        android:layout_below="@+id/tvTitlePopular"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/ivMovieImagePopular"
+        android:layout_toEndOf="@+id/ivMovieImagePopular" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/titleColor"
+        tools:text="Sample Movie Title"
+        android:id="@+id/tvTitlePopular"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ivMovieImagePopular"
+        android:layout_toEndOf="@+id/ivMovieImagePopular" />
+
+
+</RelativeLayout>

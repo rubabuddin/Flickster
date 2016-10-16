@@ -41,6 +41,10 @@ public class Movie{
 
     public int getVoteCount() { return voteCount; }
 
+    public boolean isAdult() { return adult; }
+
+
+
     String id;
     String posterPath;
     String backdropPath;
@@ -54,6 +58,8 @@ public class Movie{
 
 
 
+    boolean adult;
+
     public Movie(JSONObject jsonObject) throws JSONException { //throws exception in the case that the JSON object isn't found
         this.id = jsonObject.getString("id");
         this.posterPath = jsonObject.getString("poster_path");
@@ -65,6 +71,7 @@ public class Movie{
         this.videoExists = jsonObject.getString("video");
         this.release_date = jsonObject.getString("release_date");
         this.voteCount = jsonObject.getInt("vote_count");
+        this.adult = jsonObject.getBoolean("adult");
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray array) {

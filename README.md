@@ -38,18 +38,20 @@ The following **additional** features are implemented:
 * [X] Graphic displayed for videos that are non-Adult
 * [X] Added a splash screen on app cold launch
 * [X] Utilized ScrollView/maxLines options to display movie synopsis without text overflow
+* [X] Used Vector drawables for icons
+
  
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-Portrait View:
+Portrait View: http://i.giphy.com/3oI9K37KjEdOco1mI8.gif
 
 <img src='http://i.giphy.com/3oI9K37KjEdOco1mI8.gif' title='Flickster Walkthrough (Portrait Mode)' alt='Video Walkthrough' />
 
-Landscape View:
+Landscape View: http://i.giphy.com/26DMewguPi2fzemCk.gif
 
-<img src='http://i.giphy.com/26DMewguPi2fzemCk.gif' title='Flickster Walkthrough (Landscape Mode)' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/26DMewguPi2fzemCk/source.gif' title='Flickster Walkthrough (Landscape Mode)' alt='Video Walkthrough' />
 
 GIF created with [ezGIF](http://www.exgif.com).
 

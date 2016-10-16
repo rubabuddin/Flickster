@@ -47,11 +47,11 @@ Here's a walkthrough of implemented user stories:
 
 Portrait View: http://i.giphy.com/3oI9K37KjEdOco1mI8.gif
 
-<img src='http://i.giphy.com/3oI9K37KjEdOco1mI8.gif' title='Flickster Walkthrough (Portrait Mode)' alt='Video Walkthrough1' />
+![Alt Text](https://github.com/rubabuddin/Flickster/blob/master/portrait.gif)
 
 Landscape View: http://i.giphy.com/26DMewguPi2fzemCk.gif
 
-<img src='https://media.giphy.com/media/26DMewguPi2fzemCk/source.gif' title='Flickster Walkthrough (Landscape Mode)' alt='Video Walkthrough2' />
+![Alt Text](https://github.com/rubabuddin/Flickster/blob/master/landscape.gif)
 
 GIF created with [ezGIF](http://www.exgif.com).
 
